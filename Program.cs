@@ -174,11 +174,13 @@ List<Customer> customers = new List<Customer>() {
         where client.Balance >= 1000000
         // group client by client.Bank into Bankgroup 
                 join bank in banks on client.Bank equals bank.Symbol
+                orderby client.Name.Split(' ')[1] ascending
                 select new ReportItem {
                     CustomerName = client.Name,
                     BankName = bank.Name 
 
                  }).ToList();
+
 
         foreach (var item in millionaireReport)
         {
